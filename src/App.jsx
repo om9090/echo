@@ -2,13 +2,11 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/partials/Layout";
-// import HomePage from "./pages/homePage";
-// import LoginPage from "./pages/login";
-import Register from "./pages/register/Register";
+import LoginPage from "./pages/auth/login";
+import Register from "./pages/auth/register";
 
 // hello
 const HomePage = lazy(() => import("./pages/homePage"));
-const LoginPage = lazy(() => import("./pages/login"));
 const App = () => {
   return (
     <Routes>

@@ -25,6 +25,7 @@ const Register = () => {
                         <input
                             type='text'
                             name='name'
+                            autoComplete="current-name"
                             placeholder='Enter your full name'
                             className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
                         />
@@ -36,6 +37,7 @@ const Register = () => {
                         <input
                             type='email'
                             name='email'
+                            autoComplete="current-email"
                             placeholder='Enter your email'
                             className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
                         />
@@ -48,6 +50,7 @@ const Register = () => {
                             type='password'
                             name='password'
                             placeholder='Enter your password'
+                            autoComplete="current-password"
                             className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
                         />
                     </div>
