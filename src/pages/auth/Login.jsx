@@ -1,21 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 const LoginPage = () => {
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  }); 
+  const loginUser = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    const response = await axios.post('http://localhost:3000/login', {
+      email: formData.get('email'),
+      password: formData.get('password'),
+    });
+    console.log("Response: ", response);
+    // console.log(data);
+  };
   return (
     <div className='mx-auto h-screen p-8 flex items-start justify-center'>
       <div className='w-full max-w-md p-8 rounded-lg bg-white shadow-md'>
         <h1 className='text-3xl font-bold mb-6 text-gray-800'>Login</h1>
-        <form className='space-y-4'>
+        <form className='space-y-4' onSubmit={loginUser}>
           <div>
             <label className='block text-sm font-medium text-gray-600'>
-              Username
+              Email
             </label>
             <input
               type='text'
-              name='username'
-              placeholder='Enter your username'
-              autoComplete="current-username"
+              name='email'
+              placeholder='Enter your email'
+              autoComplete="current-email"
+              value={data.email}
+              onChange={(e) => setData({ ...data, email: e.target.value })}
               className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
             />
           </div>
@@ -28,6 +47,8 @@ const LoginPage = () => {
               name='password'
               placeholder='Enter your password'
               autoComplete="current-password"
+              value={data.password}
+              onChange={(e) => setData({ ...data, password: e.target.value })}
               className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
             />
           </div>
