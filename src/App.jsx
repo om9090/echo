@@ -6,6 +6,7 @@ import Layout from "./components/partials/Layout";
 // import LoginPage from "./pages/login";
 import Register from "./pages/register/Register";
 
+// hello
 const HomePage = lazy(() => import("./pages/homePage"));
 const LoginPage = lazy(() => import("./pages/login"));
 const App = () => {
