@@ -2,23 +2,43 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 const LoginPage = () => {
+  const { setUserInfo } = useContext(UserContext);
   const [data, setData] = useState({
     email: '',
     password: '',
-  }); 
+  });
+  const navigate = useNavigate();
   const loginUser = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    const response = await axios.post('http://localhost:3000/login', {
-      email: formData.get('email'),
-      password: formData.get('password'),
-    });
-    console.log("Response: ", response);
-    // console.log(data);
+    console.log("Form Data:", formData, "Data:", data)
+    try {
+      const response = await axios.post('http://localhost:3000/login', {
+        email: formData.get('email'),
+        password: formData.get('password'),
+        name: formData.get('name'),
+      }, { withCredentials: true });
+
+      if (response.status === 200) {
+        setUserInfo(response?.data?.user); 
+        toast.success("Login Successful");
+        navigate('/');
+      } else {
+        toast.error("Login Failed"); // You can handle other cases accordingly
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      toast.error("Login Failed");
+    }
   };
+
   return (
     <div className='mx-auto h-screen p-8 flex items-start justify-center'>
       <div className='w-full max-w-md p-8 rounded-lg bg-white shadow-md'>
