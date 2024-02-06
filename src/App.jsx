@@ -8,6 +8,7 @@ import UserContextProvider from "./context/UserContext";
 
 // hello
 const HomePage = lazy(() => import("./pages/homePage"));
+const CreatePost = lazy(() => import("./pages/addPost/CreatePost"));
 const App = () => {
   return (
     <UserContextProvider>
@@ -17,6 +18,7 @@ const App = () => {
           <Route index element={<Suspense fallback={<div>Loading...</div>}><HomePage /></Suspense>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/create" element={<Suspense fallback={<div>Loading...</div>}><CreatePost /></Suspense>} />
         </Route>
       </Routes>
     </UserContextProvider>

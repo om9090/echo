@@ -1,9 +1,9 @@
 import { Icon } from '@iconify/react'
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { UserContext } from '../../context/UserContext'
-import { useContext } from 'react'
+import ProfilePic from '../../utils/ProfilePic'
 
 const Header = () => {
     const { userInfo, setUserInfo } = useContext(UserContext)
@@ -40,11 +40,11 @@ const Header = () => {
                     <nav className="flex gap-4 text-lg font-semibold items-center">
                         {userName ? (
                             <>
-                                <button className='flex flex-row items-center'>
-                                    <Icon icon="gridicons:add-outline" className="w-8 h-8" />
-                                </button>
+                                <Link to='/create' className='flex flex-row items-center'>
+                                    Create Post
+                                </Link>
                                 <Link to="/profile">
-                                    {userName}
+                                    <ProfilePic name={userName}/>
                                 </Link>
                                 <Icon icon="tabler:logout" className="w-8 h-8" onClick={logout} />
                             </>
