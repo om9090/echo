@@ -41,12 +41,12 @@ const Header = () => {
                         {userName ? (
                             <>
                                 <Link to='/create' className='flex flex-row items-center'>
-                                    Create Post
+                                    <Icon icon="system-uicons:write" className="w-8 h-8" />
                                 </Link>
                                 <Link to="/profile">
                                     <ProfilePic name={userName}/>
                                 </Link>
-                                <Icon icon="tabler:logout" className="w-8 h-8" onClick={logout} />
+                                <Icon icon="material-symbols-light:logout" className="w-8 h-8" onClick={logout} />
                             </>
                         ) : (
                             <>
